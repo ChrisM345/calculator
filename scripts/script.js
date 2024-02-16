@@ -11,7 +11,7 @@ function operate(firstVal, secondVal, operator){
     console.log(secondVal);
 
     //If the secondVal is an empty string that means there was an operator immediately after =
-    //
+    //We do not want to change the previous Value in this case.
     if (operator == '='){
         if (secondVal !== ''){
             prevVal = currVal;
@@ -36,6 +36,31 @@ function operate(firstVal, secondVal, operator){
     }
     currVal = '';
     display.textContent = prevVal;
+}
+
+function del(delOperator){
+    console.log(delOperator)
+    switch(delOperator){
+        case 'CE':
+            currVal = '';
+            display.textContent = 0;
+            break;
+        case 'C':
+            prevVal = '';
+            currVal = '';
+            op = false;
+            equals = false;
+            prevOperator = '';
+            display.textContent = prevVal;
+            break
+        case 'Del':
+            currVal = currVal.slice(0, -1);
+            if (currVal === '') {
+                currVal = '';
+                display.textContent = 0
+            } else display.textContent = currVal;
+            break;
+    }
 }
 
 const numberButtons = document.querySelectorAll('.num')
@@ -67,4 +92,10 @@ operatorButtons.forEach(ele => {
             currVal = '';
         }
     })
+})
+
+const deleteButtons = document.querySelectorAll('.delete');
+deleteButtons.forEach(ele => {
+    ele.addEventListener('click', () =>
+    del(ele.textContent))
 })
