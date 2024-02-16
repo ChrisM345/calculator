@@ -38,8 +38,57 @@ function operate(firstVal, secondVal, operator){
     display.textContent = prevVal;
 }
 
+function special(exp){
+
+    switch(exp) {
+        case '1/x':
+            if (currVal === ''){
+                prevVal = 1/prevVal;
+                display.textContent = prevVal;
+            }else{
+                currVal = 1/currVal;
+                display.textContent = currVal;
+            }
+            break;
+        case 'x^2':
+            if (currVal === ''){
+                prevVal = prevVal ** 2;
+                display.textContent = prevVal;
+            }else{
+                currVal = currVal ** 2;
+                display.textContent = currVal;
+            }
+            break;
+        case 'sqrt(x)':
+            if (currVal === ''){
+                prevVal = Math.sqrt(prevVal);
+                display.textContent = prevVal;
+            }else{
+                currVal = Math.sqrt(currVal);
+                display.textContent = currVal;
+            }
+            break;
+        case '%':
+            currVal = (currVal / 100) * (prevVal);
+            display.textContent = currVal;
+            break;
+        case '+/-':
+            if (currVal === '') {
+                prevVal *= -1;
+                display.textContent = prevVal;
+            }
+            else {currVal *= -1;
+                display.textContent = currVal;
+            }
+            break;
+
+    }
+    //display.textContent = currVal;
+}
+
 function del(delOperator){
     console.log(delOperator)
+    console.log(currVal);
     switch(delOperator){
         case 'CE':
             currVal = '';
@@ -54,6 +103,7 @@ function del(delOperator){
             display.textContent = prevVal;
             break
         case 'Del':
+            currVal = currVal.toString();
             currVal = currVal.slice(0, -1);
             if (currVal === '') {
                 currVal = '';
@@ -98,4 +148,10 @@ const deleteButtons = document.querySelectorAll('.delete');
 deleteButtons.forEach(ele => {
     ele.addEventListener('click', () =>
     del(ele.textContent))
+})
+
+const specialButtons = document.querySelectorAll('.special');
+specialButtons.forEach(ele => {
+    ele.addEventListener('click', () =>
+    special(ele.textContent))
 })
