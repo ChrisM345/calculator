@@ -20,4 +20,7 @@ button {
 #result{
     width: 320px;
     height: 80px;
+    outline: auto;
+    font-size: 70px;
+    text-align: right;
 }
