@@ -1,6 +1,7 @@
 let prevVal = '';
 let currVal = '';
 let op = false;
+let equals = false;
 let prevOperator = '';
 const display = document.querySelector('#result');
 display.textContent = prevVal;
@@ -8,6 +9,17 @@ display.textContent = prevVal;
 function operate(firstVal, secondVal, operator){
     console.log(firstVal);
     console.log(secondVal);
+
+    //If the secondVal is an empty string that means there was an operator immediately after =
+    //
+    if (operator == '='){
+        if (secondVal !== ''){
+            prevVal = currVal;
+        }
+    }
+    firstVal = Number(firstVal);
+    secondVal = Number(secondVal);
+
     switch(operator) {
         case '+':
             prevVal = firstVal + secondVal;
@@ -29,6 +41,9 @@ function operate(firstVal, secondVal, operator){
 const numberButtons = document.querySelectorAll('.num')
 numberButtons.forEach(ele => {
     ele.addEventListener('click', (e) => {
+        if (equals == true){
+            //op = false;
+        }
         currVal += ele.textContent;
         //console.log(prevVal);
         //console.log(currVal)
@@ -40,10 +55,11 @@ const operatorButtons = document.querySelectorAll('.operator');
 operatorButtons.forEach(ele => {
     ele.addEventListener('click', () => {
         if (op == true) {
-            operate(Number(prevVal), Number(currVal), prevOperator)
+            operate(prevVal, currVal, prevOperator)
             prevOperator = ele.textContent;
         }
         else{
+            equals = false;
             op = true;
             prevOperator = ele.textContent;
             prevVal = currVal;
