@@ -4,7 +4,14 @@ const display = document.querySelector('#result');
 display.textContent = prevVal;
 
 function operate(firstVal, secondVal, operator){
-    return
+    console.log(firstVal);
+    console.log(secondVal);
+    switch(operator) {
+        case '+':
+            prevVal = firstVal + secondVal;
+            currVal = '';
+            display.textContent = prevVal;
+    }
 }
 
 const numberButtons = document.querySelectorAll('.num')
@@ -19,5 +26,5 @@ numberButtons.forEach(ele => {
 
 const operatorButtons = document.querySelectorAll('.operator');
 operatorButtons.forEach(ele => {
-    ele.addEventListener('click', () => operate(prevVal, currVal, ele.textContent))
+    ele.addEventListener('click', () => operate(Number(prevVal), Number(currVal), ele.textContent))
 })
