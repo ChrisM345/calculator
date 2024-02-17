@@ -21,6 +21,7 @@ button {
     width: 320px;
     height: 80px;
     outline: auto;
-    font-size: 70px;
+    font-size: 53px;
     text-align: right;
+    line-height: 80px;
 }
