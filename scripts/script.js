@@ -173,8 +173,8 @@ const decimalButton = document.querySelector('.decimal');
 decimalButton.addEventListener('click', () => {
     if (!currVal.includes('.')) currVal += '.';
     display.textContent = currVal;
-    console.log('. was pressed')
 })
+
 
 const info = document.querySelector('p')
 info.innerText = `The max number of this calculator is ${NUMBER_MAX}.
