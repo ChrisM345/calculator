@@ -37,8 +37,8 @@ function operate(firstVal, secondVal, operator){
             break;
     }
     currVal = '';
-    if( prevVal > NUMBER_MAX) prevVal = NUMBER_MAX;
-    display.textContent = (Number(prevVal)).toString();
+    prevVal = testOverflow(prevVal);
+    display.textContent = prevVal;
 }
 
 function testOverflow(number){
@@ -168,3 +168,15 @@ specialButtons.forEach(ele => {
     ele.addEventListener('click', () =>
     special(ele.textContent))
 })
+
+const decimalButton = document.querySelector('.decimal');
+decimalButton.addEventListener('click', () => {
+    if (!currVal.includes('.')) currVal += '.';
+    display.textContent = currVal;
+    console.log('. was pressed')
+})
+
+const info = document.querySelector('p')
+info.innerText = `The max number of this calculator is ${NUMBER_MAX}.
+Numbers are rounded to the third decimal place.
+If the length of characters for the number is > ${DISPLAY_MAX} the number is rounded.`

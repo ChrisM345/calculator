@@ -4,6 +4,7 @@ html {
     background-color: #f4f4f4;
 }
 
+
 button {
     /* padding: 20px 20px; */
     width: 80px;
@@ -14,7 +15,7 @@ button {
     display: flex;
     width: 320px;
     flex-wrap: wrap;
-
+    margin: 0 auto;
 }
 
 #result{
@@ -24,4 +25,20 @@ button {
     font-size: 53px;
     text-align: right;
     line-height: 80px;
+    background-color: white;
+}
+
+.delete{
+    background-color: red;
+}
+.num, .decimal, .operator, .special{
+    background-color: lightblue;
+}
+
+.equals{
+    background-color: lightblue;
+}
+
+p {
+    text-align: center;
 }
